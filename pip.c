@@ -2,6 +2,7 @@
 #include <unistd.h>
 #include <stdio.h>
 int main(){
+//Создаем массив из двух элементов для хранения файловых дескрипторов для чтения и для записи
 	int fd[2];
 	size_t size;
 	char string[] = "Hello, World!";
