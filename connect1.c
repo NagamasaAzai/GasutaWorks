@@ -2,17 +2,20 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+//подключение библиотеки для управления файлами
 #include <fcntl.h>
 int main() {
-	int fd;
-	size_t size;
+	int fd; //файловый дискриптор
+	size_t size; //размер строки в байтах
 	char string[]="3.120.2.21 Gasuta";
+//открытие файла на запись, если файла не существует, то он будет создан с правилами доступа 0666
 	if((fd = open("file1.txt", O_WRONLY|O_CREAT, 0666))<0) {
 		printf("Ошибка\n");
 		exit(-1);
 	}
-	size = (fd, string, 17);
-	if (size != 17) {
+//чтение файла в строку string 
+	size = write(fd, string, 18);
+	if (size != 18) {
 		printf("Не удалось записать все строку в файл\n");
 		exit(-1);
 	}
