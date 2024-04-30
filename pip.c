@@ -78,6 +78,7 @@ int main(){
         		exit(-1);
 		}
 		//Печаткаем прочитанную строку//
+		printf("Процесс-ребенок записал информацию в pipe\n");
 		printf("Информация от родителя:");
 		for (int i=0; i<13; i++) printf("%c", resstring1[i]);
 		printf("\n");
@@ -87,7 +88,7 @@ int main(){
                         printf("Can\'t write all string\n");
                         exit(-1);
                 }
-                printf("Процесс-ребенок записал информацию в pipe\n");
+               // printf("Процесс-ребенок записал информацию в pipe\n");
 		//Закрываем входной поток//
 		if (close(fd1[0]) < 0){
 			printf("Can\'t close input stream\n");
