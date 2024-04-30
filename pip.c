@@ -49,7 +49,9 @@ int main(){
                         exit(-1);
                 }
                 //Печаткаем прочитанную строку//
-                printf("Информация от дочернего процесса: %s\n", resstring2);
+                printf("Информация от дочернего процесса:");
+		for (int i=0; i<14; i++) printf("%c", resstring2[i]);
+		printf("\n");
 		if(close(fd1[1]) <0) {
 			printf("Can\'t close output stream\n");
 			exit(-1);
@@ -76,7 +78,9 @@ int main(){
         		exit(-1);
 		}
 		//Печаткаем прочитанную строку//
-		printf("%s\n", resstring1);
+		printf("Информация от родителя:");
+		for (int i=0; i<13; i++) printf("%c", resstring1[i]);
+		printf("\n");
 		size = write(fd2[1], string2, 14);
                 if(size != 14){
                 //Если меньше количества байтов//
