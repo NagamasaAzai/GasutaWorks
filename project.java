@@ -2,17 +2,19 @@
 abstract class TwoDShape {
 	private double width;
 	private double height;
+	private double depth;
 	private String name;
 
 	//Конструктор по умолчанию
 	TwoDShape() {
-		width = height = 0.0;
+		width = height = depth = 0.0;
 		name = "none";
 	}
 
 	//Параметризированный конструктор
-	TwoDShape(double w, double h, String n) {
+	TwoDShape(double w, double h, double d, String n) {
 		width = w;
+		depth = d;
 		height = h;
 		name = n;
 
@@ -20,13 +22,14 @@ abstract class TwoDShape {
 
 	//Создание обьекта с одинаковыми значениями
 	TwoDShape(double x, String n) {
-		width = height = x;
+		width = height = depth = x;
 		name = n;
 	}
 
 	//Создание одного обьекта на основе другого
 	TwoDShape(TwoDShape ob) {
 		width = ob.width;
+		depth = ob.depth;
 		height = ob.height;
 		name = ob.name;
 	}
@@ -34,13 +37,15 @@ abstract class TwoDShape {
 	//Методы доступа к переменным width и height
 	double getWidth() { return width; };
 	double getHeight() { return height; };
+	double getDepth() { return depth; };
 	void setWidth(double w) { width = w; };
+	void setDepth(double d) { depth = d; };
 	void setHeight(double h) {height = h; };
 
 	String getName() { return name; };
 
 	void showDim() {
-		System.out.println("Ширина и высота - " + width + " и " + height);
+		System.out.println("Ширина и высота и глубина - " + width + " и " + height + "и" + depth);
 	}
 
 	//Теперь метод area() абстрактный
@@ -48,7 +53,7 @@ abstract class TwoDShape {
 }
 
 //Подкласс для представления треугольников, произвольный от класса TwoDShape
-class Triangle extends TwoDShape {
+/*class Triangle extends TwoDShape {
 	private String style;
 
 	//Конструктор по умолчанию
@@ -58,7 +63,7 @@ class Triangle extends TwoDShape {
 	}
 
 	//Констуктор класса Triangle
-	Triangle(String s, double w, double h) {
+	Triangle(double w, double h, String s) {
 		super(w, h, "Треугольник");
 		style = s;
 	}
@@ -83,24 +88,24 @@ class Triangle extends TwoDShape {
 		System.out.println("Треугольник" + style);
 	}
 }
-
+*/
 
 
 	//Подкласс для представления прямоугольников, производный от класса TwoDShape
 class Rectangle extends TwoDShape {
-	//Конструктор по умолчанию
+	//Конструктор по умолчанию00
 	Rectangle() {
 		super();
 	}
 
 	//Конструктор класса Rectangle
-	Rectangle(double w, double h) {
-		super(w, h, "прямоугольник"); //вызвать конструктор класса TwoDShape
+	Rectangle(double w, double h, double d) {
+		super(w, h, d, "Куб"); //вызвать конструктор класса TwoDShape
 	}
 
-	//Создание квадрата
-	Rectangle(double x) { 
-		super(x, "прямоугольник"); //вызвать конструктор суперкласса
+	//Создание куба
+	Rectangle(double z) { 
+		super(z, "Куб"); //вызвать конструктор суперкласса
 	}
 
 	//Создание одного обьекта на основе другого
@@ -108,24 +113,24 @@ class Rectangle extends TwoDShape {
 		super(ob); // Передача обьекта конструктору класса TwoDShape
 	}
 
-	boolean isSquare() {
-		if(getWidth() == getHeight()) return true;
+	boolean isCube() {
+		if((getWidth() == getHeight()) & (getDepth()==getHeight())) return true;
 		return false;
 	}
 
 	double area() {
-		return getWidth() * getHeight();
+		return getWidth() * getHeight() * getDepth();
 	}	
 }
 
 class AbsShape {
 	public static void main(String args[]) {
-		TwoDShape shapes[] = new TwoDShape[4];
+		TwoDShape shapes[] = new TwoDShape[2];
 
-		shapes[0] = new Triangle("контурный", 8.0, 12.0);
-		shapes[1] = new Rectangle(10);
-		shapes[2] = new Rectangle(10, 4);
-		shapes[3] = new Triangle(7.0);
+	//	shapes[0] = new Triangle("контурный", 8.0, 12.0);
+		shapes[0] = new Rectangle(10.0);
+		shapes[1] = new Rectangle(10.0, 4.0, 5.0);
+	//	shapes[3] = new Triangle(7.0);
 
 		for(int i=0; i < shapes.length; i++) {
 			System.out.println("Обьект - " + shapes[i].getName());
